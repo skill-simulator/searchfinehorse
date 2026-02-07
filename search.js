@@ -52,6 +52,15 @@ function showHorseDetail(name) {
   const horse = horses[name];
   const resultDiv = document.getElementById("result");
 
+  // 馬が未登録の場合
+  if (!horse) {
+    resultDiv.innerHTML = `
+      <h2>${name}</h2>
+      <p>この馬の情報はまだ登録されていません。</p>
+    `;
+    return;
+  }
+
   let html = `<h2>${name}</h2>`;
 
   if (horse.combinations?.length > 0) {
@@ -61,9 +70,14 @@ function showHorseDetail(name) {
       html += `
         <li>
           配合ランク：${c["名馬配合ランク"]}<br>
-          母馬：${c["母馬"]}<br>
+          母馬：
+          <span style="color:blue;cursor:pointer"
+                onclick="showHorseDetail('${c["母馬"]}')">
+            ${c["母馬"]}
+          </span><br>
           スキル：${c["名馬スキル"]}
-        </li><hr>
+        </li>
+        <hr>
       `;
     });
 
@@ -72,4 +86,3 @@ function showHorseDetail(name) {
 
   resultDiv.innerHTML = html;
 }
-
