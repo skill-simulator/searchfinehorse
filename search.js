@@ -52,20 +52,24 @@ function showHorseDetail(name) {
   const horse = horses[name];
   const resultDiv = document.getElementById("result");
 
-  let html = `<h2>${horse.name}</h2>`;
-  html += `<p>${horse.profile}</p>`;
-  html += `<p>父：${horse.sire}</p>`;
+  let html = `<h2>${name}</h2>`;
 
-  if (horse.related?.length > 0) {
-    html += "<h3>関連馬</h3><ul>";
-    horse.related.forEach(r => {
-      html += `<li style="cursor:pointer;color:blue"
-                onclick="showHorseDetail('${r}')">
-                ${r}
-              </li>`;
+  if (horse.combinations?.length > 0) {
+    html += "<h3>配合・スキル一覧</h3><ul>";
+
+    horse.combinations.forEach(c => {
+      html += `
+        <li>
+          配合ランク：${c["名馬配合ランク"]}<br>
+          母馬：${c["母馬"]}<br>
+          スキル：${c["名馬スキル"]}
+        </li><hr>
+      `;
     });
+
     html += "</ul>";
   }
 
   resultDiv.innerHTML = html;
 }
+
