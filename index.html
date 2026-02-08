@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>名馬配合検索</title>
+  <title>名馬配合検索 - 全47頭対応</title>
   <style>
     body {
       font-family: "メイリオ", "Meiryo", sans-serif;
@@ -77,14 +77,20 @@
     li {
       margin: 5px 0;
     }
+    .info {
+      color: #666;
+      font-size: 14px;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
 
 <h1>競走馬検索</h1>
+<p class="info">全47頭・87配合パターンを検索できます</p>
 
 <div class="search-box">
-  <input type="text" id="searchInput" placeholder="馬名を入力">
+  <input type="text" id="searchInput" placeholder="馬名を入力（例：アグネス、ディープ）">
   <button onclick="searchHorse()">検索</button>
 </div>
 
