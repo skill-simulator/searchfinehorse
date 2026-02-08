@@ -2,18 +2,94 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>名馬配合検索</title>
+  <style>
+    body {
+      font-family: "メイリオ", "Meiryo", sans-serif;
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    h1 {
+      color: #333;
+      border-bottom: 3px solid #4CAF50;
+      padding-bottom: 10px;
+    }
+    .search-box {
+      margin: 20px 0;
+    }
+    #searchInput {
+      padding: 10px;
+      font-size: 16px;
+      width: 300px;
+      border: 2px solid #ddd;
+      border-radius: 4px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    #result {
+      margin-top: 30px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .horse-name {
+      color: #2196F3;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .horse-name:hover {
+      color: #0b7dda;
+    }
+    .combination-item {
+      background-color: #f9f9f9;
+      padding: 15px;
+      margin: 10px 0;
+      border-left: 4px solid #4CAF50;
+      border-radius: 4px;
+    }
+    .rank {
+      font-weight: bold;
+      color: #ff6b6b;
+    }
+    .skill {
+      color: #4CAF50;
+      font-weight: bold;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin: 5px 0;
+    }
+  </style>
 </head>
 <body>
 
 <h1>競走馬検索</h1>
 
-<input type="text" id="searchInput" placeholder="馬名を入力">
-<button onclick="searchHorse()">検索</button>
+<div class="search-box">
+  <input type="text" id="searchInput" placeholder="馬名を入力">
+  <button onclick="searchHorse()">検索</button>
+</div>
 
 <div id="result"></div>
 
-<script src="search.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
-
