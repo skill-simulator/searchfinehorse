@@ -1,14 +1,24 @@
 let horses = {};
+let loaded = false;
 
-// JSON読み込み（変更なし）
+// JSON読み込み
 fetch("horses.json")
   .then(res => res.json())
   .then(data => {
     horses = data;
+    loaded = true;
+    console.log("JSON読込完了:", Object.keys(horses));
+  })
+  .catch(err => {
+    console.error("JSON読み込み失敗", err);
   });
 
-// ★ここを書き換える
 function searchHorse() {
+  if (!loaded) {
+    alert("データ読込中です。少し待ってください。");
+    return;
+  }
+
   const input = document.getElementById("searchInput").value.trim();
   const resultDiv = document.getElementById("result");
 
@@ -19,7 +29,6 @@ function searchHorse() {
     return;
   }
 
-  // 部分一致検索
   const matches = Object.keys(horses).filter(name =>
     name.includes(input)
   );
@@ -34,13 +43,13 @@ function searchHorse() {
     return;
   }
 
-  // 複数ヒット時
   let html = "<h3>候補</h3><ul>";
   matches.forEach(name => {
-    html += `<li style="cursor:pointer;color:blue"
-              onclick="showHorseDetail('${name}')">
-              ${name}
-            </li>`;
+    html += `
+      <li style="cursor:pointer;color:blue"
+          onclick="jumpToHorse(${JSON.stringify(name)})">
+        ${name}
+      </li>`;
   });
   html += "</ul>";
 
@@ -53,7 +62,6 @@ function jumpToHorse(name) {
   searchHorse();
 }
 
-// ★新しく追加
 function showHorseDetail(name) {
   const horse = horses[name];
   const resultDiv = document.getElementById("result");
@@ -66,26 +74,23 @@ function showHorseDetail(name) {
     return;
   }
 
-  if (horse.combinations && horse.combinations.length > 0) {
-    html += "<h3>配合・スキル一覧</h3><ul>";
+  html += "<h3>配合・スキル一覧</h3><ul>";
 
-    horse.combinations.forEach(c => {
-      html += `
-        <li>
-          配合ランク：${c["名馬配合ランク"]}<br>
-          母馬：
-          <span style="color:blue; cursor:pointer; text-decoration:underline"
-                onclick="jumpToHorse(${JSON.stringify(c["母馬"])})">
-            ${c["母馬"]}
-          </span><br>
-          スキル：${c["名馬スキル"]}
-        </li>
-        <hr>
-      `;
-    });
+  horse.combinations.forEach(c => {
+    html += `
+      <li>
+        配合ランク：${c["名馬配合ランク"]}<br>
+        母馬：
+        <span style="color:blue; cursor:pointer; text-decoration:underline"
+              onclick="jumpToHorse(${JSON.stringify(c["母馬"])})">
+          ${c["母馬"]}
+        </span><br>
+        スキル：${c["名馬スキル"]}
+      </li>
+      <hr>
+    `;
+  });
 
-    html += "</ul>";
-  }
-
+  html += "</ul>";
   resultDiv.innerHTML = html;
 }
