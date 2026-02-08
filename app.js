@@ -1442,17 +1442,221 @@ const horsesData = {
   }
 };
 
+// ニックスデータ（血統相性）
+const nicksData = {
+  "ミスタープロスペクター": [
+    "リファール",
+    "ネヴァーベンド",
+    "ノーザンダンサー",
+    "ロベルト",
+    "サンデーサイレンス",
+    "ブラッシンググルーム",
+    "ノーザンダンサー",
+    "デピュティミニスター",
+    "ストームキャット",
+    "ミスタープロスペクター",
+    "ダンジグ",
+    "ニジンスキー"
+  ],
+  "ガリレオ": [
+    "ミルリーフ",
+    "ゼダーン",
+    "ストームキャット"
+  ],
+  "ニジンスキー": [
+    "リファール",
+    "ミスタープロスペクター",
+    "フォーティナイナー",
+    "ミルリーフ"
+  ],
+  "サンデーサイレンス": [
+    "リファール",
+    "ノーザンダンサー",
+    "ゼダーン",
+    "キングマンボ",
+    "キングカメハメハ",
+    "ダンジグ",
+    "ロベルト",
+    "デピュティミニスター",
+    "ミスタープロスペクター"
+  ],
+  "フォーティナイナー": [
+    "ノーザンダンサー",
+    "ニジンスキー",
+    "ノーザンテースト",
+    "ネヴァーベンド"
+  ],
+  "アップライドルド": [
+    "エーピーインディ",
+    "ストームキャット",
+    "カロ"
+  ],
+  "ネヴァーベンド": [
+    "ノーザンテースト",
+    "ノーザンダンサー",
+    "フォーティナイナー"
+  ],
+  "ミルリーフ": [
+    "バーソロン",
+    "ハイペリオン",
+    "サドラーズウェルズ",
+    "ニジンスキー",
+    "ノーザンダンサー"
+  ],
+  "ブランアンズタイム": [
+    "ノーザンダンサー",
+    "カロ",
+    "ストームキャット",
+    "ノーザンテースト"
+  ],
+  "リファール": [
+    "サンデーサイレンス",
+    "ニジンスキー",
+    "ミスタープロスペクター",
+    "リファール",
+    "パーソロン"
+  ],
+  "ロベルト": [
+    "カロ",
+    "サドラーズウェルズ",
+    "タピット",
+    "ノーザンダンサー",
+    "キングカメハメハ",
+    "サンデーサイレンス",
+    "デピュティミニスター",
+    "ミスタープロスペクター",
+    "ダンジグ"
+  ],
+  "ダンジグ": [
+    "ゼダーン",
+    "ミスタープロスペクター",
+    "ロベルト",
+    "ブラッシングルーム",
+    "ウッドマン",
+    "ガリレオ",
+    "サンデーサイレンス"
+  ],
+  "ゼダーン": [
+    "サンデーサイレンス",
+    "ノーザンダンサー",
+    "ニジンスキー"
+  ],
+  "エーピーインディ": [
+    "マキャベリアン",
+    "デピュティミニスター",
+    "アンブライドルド",
+    "サドラーズウェルズ"
+  ],
+  "ハイペリオン": [
+    "ミルリーフ"
+  ],
+  "キングカメハメハ": [
+    "ロベルト",
+    "デピュティミニスター",
+    "サンデーサイレンス"
+  ],
+  "キングマンボ": [
+    "サンデーサイレンス",
+    "サドラーズウェルズ"
+  ],
+  "マキャベリアン": [
+    "エーピーインディ"
+  ],
+  "ジャイアンツコーズウェイ": [
+    "サドラーズウェルズ",
+    "カロ"
+  ],
+  "サドラーズウェルズ": [
+    "ミルリーフ",
+    "エーピーインディ",
+    "デインヒル",
+    "ロベルト",
+    "キングマンボ",
+    "ジャイアンツコーズウェイ"
+  ],
+  "デピュティミニスター": [
+    "エーピーインディ",
+    "ロベルト",
+    "ミスタープロスペクター",
+    "キングカメハメハ",
+    "サンデーサイレンス"
+  ],
+  "ノーザンダンサー": [
+    "ゼダーン",
+    "ミスタープロスペクター",
+    "フォーティナイナー",
+    "ミルリーフ",
+    "ノーザンダンサー",
+    "ブラッシングルーム",
+    "ネヴァーベンド",
+    "サンデーサイレンス",
+    "ロベルト"
+  ],
+  "カロ": [
+    "ロベルト",
+    "ブライアンズタイム",
+    "ジャイアンツコーズウェイ",
+    "サンデーサイレンス",
+    "アンブライドルド"
+  ],
+  "バーソロン": [
+    "リファール",
+    "ミルリーフ",
+    "ネヴァーベンド"
+  ],
+  "グリーンデザート": [
+    "ミスタープロスペクター"
+  ],
+  "デインヒル": [
+    "サドラーズウェルズ",
+    "ブラッシンググルーム",
+    "クレイロン"
+  ]
+};
+
+// 現在の表示モード
+let currentMode = "horses"; // "horses" または "nicks"
+
+// モード切り替え
+function switchMode(mode) {
+  currentMode = mode;
+  const horsesBtn = document.getElementById("horsesBtn");
+  const nicksBtn = document.getElementById("nicksBtn");
+  const resultDiv = document.getElementById("result");
+  
+  if (mode === "horses") {
+    horsesBtn.classList.add("active");
+    nicksBtn.classList.remove("active");
+  } else {
+    horsesBtn.classList.remove("active");
+    nicksBtn.classList.add("active");
+  }
+  
+  document.getElementById("searchInput").value = "";
+  resultDiv.innerHTML = "";
+}
+
 // 検索機能
 function searchHorse() {
   const input = document.getElementById("searchInput").value.trim();
   const resultDiv = document.getElementById("result");
 
   if (!input) {
-    resultDiv.innerHTML = "<p>馬名を入力してください</p>";
+    resultDiv.innerHTML = "<p>検索キーワードを入力してください</p>";
     return;
   }
 
-  // 部分一致検索
+  if (currentMode === "horses") {
+    searchHorseData(input);
+  } else {
+    searchNicksData(input);
+  }
+}
+
+// 馬データ検索
+function searchHorseData(input) {
+  const resultDiv = document.getElementById("result");
+  
   const matches = Object.keys(horsesData).filter(name =>
     name.includes(input)
   );
@@ -1462,13 +1666,11 @@ function searchHorse() {
     return;
   }
 
-  // 1件のみヒット → 詳細表示
   if (matches.length === 1) {
     showHorseDetail(matches[0]);
     return;
   }
 
-  // 複数ヒット → 候補表示
   let html = "<h3>候補（" + matches.length + "件）</h3><ul>";
   matches.forEach(name => {
     const horse = horsesData[name];
@@ -1490,10 +1692,42 @@ function searchHorse() {
   resultDiv.innerHTML = html;
 }
 
+// ニックス検索
+function searchNicksData(input) {
+  const resultDiv = document.getElementById("result");
+  
+  const matches = Object.keys(nicksData).filter(name =>
+    name.includes(input)
+  );
+
+  if (matches.length === 0) {
+    resultDiv.innerHTML = "<p>該当する父系統が見つかりません</p>";
+    return;
+  }
+
+  if (matches.length === 1) {
+    showNicksDetail(matches[0]);
+    return;
+  }
+
+  let html = "<h3>候補（" + matches.length + "件）</h3><ul>";
+  matches.forEach(name => {
+    html += `<li><span class="horse-name" onclick="selectNicks('${name}')">${name}</span></li>`;
+  });
+  html += "</ul>";
+  resultDiv.innerHTML = html;
+}
+
 // 候補から馬を選択
 function selectHorse(name) {
   document.getElementById("searchInput").value = name;
   showHorseDetail(name);
+}
+
+// 候補からニックスを選択
+function selectNicks(name) {
+  document.getElementById("searchInput").value = name;
+  showNicksDetail(name);
 }
 
 // 馬の詳細表示
@@ -1514,7 +1748,6 @@ function showHorseDetail(name) {
   const hasFatherCombos = horse.combinations && horse.combinations.length > 0;
   const hasMotherCombos = horse.as_mother && horse.as_mother.length > 0;
 
-  // 父馬としての配合情報
   if (hasFatherCombos) {
     html += "<h3>父馬としての配合（" + horse.combinations.length + "件）</h3>";
     horse.combinations.forEach(combo => {
@@ -1528,7 +1761,6 @@ function showHorseDetail(name) {
     });
   }
 
-  // 母馬としての配合情報
   if (hasMotherCombos) {
     html += "<h3>母馬としての配合（" + horse.as_mother.length + "件）</h3>";
     horse.as_mother.forEach(combo => {
@@ -1542,7 +1774,6 @@ function showHorseDetail(name) {
     });
   }
 
-  // 配合情報がない場合
   if (!hasFatherCombos && !hasMotherCombos) {
     html += `
       <div style="padding:20px;background-color:#f5f5f5;border-left:4px solid #999;border-radius:4px;">
@@ -1553,6 +1784,31 @@ function showHorseDetail(name) {
     `;
   }
 
+  resultDiv.innerHTML = html;
+}
+
+// ニックスの詳細表示
+function showNicksDetail(name) {
+  const motherLines = nicksData[name];
+  const resultDiv = document.getElementById("result");
+
+  if (!motherLines) {
+    resultDiv.innerHTML = `
+      <h2>${name}（父系統）</h2>
+      <p style="color:red">この系統の情報は登録されていません</p>
+    `;
+    return;
+  }
+
+  let html = `<h2>${name}（父系統）</h2>`;
+  html += `<h3>相性の良い母系統（${motherLines.length}件）</h3>`;
+  html += "<ul class='nicks-list'>";
+  
+  motherLines.forEach(mother => {
+    html += `<li><span class="nicks-item">${mother}</span></li>`;
+  });
+  
+  html += "</ul>";
   resultDiv.innerHTML = html;
 }
 
