@@ -67,21 +67,18 @@ function showHorseDetail(name) {
   }
 
   if (horse.combinations && horse.combinations.length > 0) {
-    html += "<h3>配合・スキル一覧</h3><ul>";
-
-    horse.combinations.forEach(c => {
-      html += `
-        <li>
-          配合ランク：${c["名馬配合ランク"]}<br>
-          母馬：
-          <span style="color:blue; cursor:pointer; text-decoration:underline"
-                onclick="showHorseDetail(${JSON.stringify(c["母馬"])})">
-            ${c["母馬"]}
-          </span><br>
-          スキル：${c["名馬スキル"]}
-        </li>
-        <hr>
-      `;
+    html += `
+  <li>
+    配合ランク：${c["名馬配合ランク"]}<br>
+    母馬：
+    <span style="color:blue; cursor:pointer; text-decoration:underline"
+          onclick="jumpToHorse(${JSON.stringify(c["母馬"])})">
+      ${c["母馬"]}
+    </span><br>
+    スキル：${c["名馬スキル"]}
+  </li>
+  <hr>
+`;
     });
 
     html += "</ul>";
