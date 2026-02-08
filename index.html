@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>名馬配合検索 - 全47頭対応</title>
+  <title>名馬配合・ニックス検索</title>
   <style>
     body {
       font-family: "メイリオ", "Meiryo", sans-serif;
@@ -17,6 +17,33 @@
       border-bottom: 3px solid #4CAF50;
       padding-bottom: 10px;
     }
+    
+    .mode-switcher {
+      display: flex;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    
+    .mode-btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #e0e0e0;
+      color: #333;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .mode-btn.active {
+      background-color: #4CAF50;
+      color: white;
+    }
+    
+    .mode-btn:hover {
+      opacity: 0.8;
+    }
+    
     .search-box {
       margin: 20px 0;
     }
@@ -27,7 +54,7 @@
       border: 2px solid #ddd;
       border-radius: 4px;
     }
-    button {
+    button.search-btn {
       padding: 10px 20px;
       font-size: 16px;
       background-color: #4CAF50;
@@ -37,7 +64,7 @@
       cursor: pointer;
       margin-left: 10px;
     }
-    button:hover {
+    button.search-btn:hover {
       background-color: #45a049;
     }
     #result {
@@ -82,16 +109,40 @@
       font-size: 14px;
       margin-top: 10px;
     }
+    
+    .nicks-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+      padding: 10px 0;
+    }
+    
+    .nicks-list li {
+      background-color: #e8f5e9;
+      padding: 10px;
+      border-radius: 4px;
+      text-align: center;
+    }
+    
+    .nicks-item {
+      color: #2e7d32;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
 
-<h1>競走馬検索</h1>
-<p class="info">全114頭（父馬47頭・母馬67頭）・87配合パターンを検索できます</p>
+<h1>競走馬・ニックス検索</h1>
+<p class="info">名馬配合：114頭（父馬47頭・母馬67頭）／ニックス：26系統</p>
+
+<div class="mode-switcher">
+  <button id="horsesBtn" class="mode-btn active" onclick="switchMode('horses')">名馬配合</button>
+  <button id="nicksBtn" class="mode-btn" onclick="switchMode('nicks')">ニックス</button>
+</div>
 
 <div class="search-box">
-  <input type="text" id="searchInput" placeholder="馬名を入力（例：アグネス、ディープ）">
-  <button onclick="searchHorse()">検索</button>
+  <input type="text" id="searchInput" placeholder="検索キーワードを入力">
+  <button class="search-btn" onclick="searchHorse()">検索</button>
 </div>
 
 <div id="result"></div>
