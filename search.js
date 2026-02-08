@@ -47,6 +47,12 @@ function searchHorse() {
   resultDiv.innerHTML = html;
 }
 
+function jumpToHorse(name) {
+  const input = document.getElementById("searchInput");
+  input.value = name;
+  searchHorse();
+}
+
 // ★新しく追加
 function showHorseDetail(name) {
   const horse = horses[name];
